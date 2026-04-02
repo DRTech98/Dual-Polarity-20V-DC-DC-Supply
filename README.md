@@ -6,6 +6,15 @@ Originally when establishing this project I had several goals and accomplishment
 3. Create a board that can be used for transistors, operational amplifiers, and class A-D amplifiers
 4. Keep all components on the board surfacemount and a reasonable size (less than 8x8 dimensions in inches)
 
+Quick spec summary:
+Input voltage: 25V DC (From WANPTEK DPS3010U power supply)
+Non-inverting rail: LMR33640ADDAR
+Inverting Rail: LM5088MH-1/NOPB
+E-Fuse: TPS16416DRCR
+Shunt Regulator: TL431BQDBZR
+Topology: Synchronous Buck (Positive Rail) / Non-Synchronous Buck-Boost (Negative Rail)
+
+
 When first creating this design I had the idea of using my WANPTEK DPS3010U 30V 10A power supply with a 25V input via banana jack connectors and output that could generate a positive and negative rail via two separate ICs. 
 
 My first iteration of the schematic used the LMR33640ADDAR for both rails (one for each). I selected this part due to its high input voltage capability (36V), switching frequency option of 400kHz and 1MHz, and maximum current output of 4A. Given that Texas Instruments has an application note on this IC for working in the invertinng buck boost topology it seemed to be the perfect component. However upon further investigation, the -VOUT rail tied to the VIN rail at the input pin caused the voltage range I was workign with to exceed the ICs maximum voltage rating (25V in and -20V out at max output results in 45V which exceeds the 36V rating). This idea was then quickly scrapped as althoguh I don't plan on using -20V often for my breadboard circuits it would be a nice feature to have. 
